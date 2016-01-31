@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160131210223) do
+ActiveRecord::Schema.define(version: 20160131213009) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,8 @@ ActiveRecord::Schema.define(version: 20160131210223) do
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
     t.string   "cohort_signup_code",                null: false
+    t.integer  "start_hour_utc",     default: 15
+    t.integer  "start_min_utc",      default: 30
   end
 
   create_table "days", force: :cascade do |t|

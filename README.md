@@ -3,10 +3,15 @@ Chronos - API
 
 An API to let students checkin in to classrooms, using iBeacons
 
-Work in Process
+How to Run
 ---------------
 
-Warning Warning Warning.
+1. Get on heroku
+2. Create a Cohort (admin is through heroku console) with a invite code, with
+   the beacon id set to the ibeacon's ID
+3. Each day run `rake chronos:daily_book`
+4. Give students access to the React Native Application
+5. Each day, students press their phone to the beacon and checkin
 
 Stack
 ----
