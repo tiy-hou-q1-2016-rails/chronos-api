@@ -1,6 +1,7 @@
 class Api::MeController < Api::BaseController
 
   def show
+    @student = current_student
   end
 
   def history

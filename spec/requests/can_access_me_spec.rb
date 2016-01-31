@@ -9,8 +9,8 @@ describe "API" do
 
   it "With student created, can get my information" do
 
-    cohort  = Cohort.create! name: "Rails Engineering - Houston Q1 2016", beacon_id: "yolo2016", campus_name: "Houston"
-    student = Student.create! name: "Jesse Wo", email: "user@example.com", password: "sekret", cohort: cohort, phone_number: "7135555555"
+    cohort  = Cohort.create! name: "Rails Engineering - Houston Q1 2016", beacon_id: "yolo2016", campus_name: "Houston", cohort_signup_code: "5a4r"
+    student = Student.create! name: "Jesse Wo", email: "user@example.com", password: "sekret", cohort: cohort
 
     auth_args = {
       "grant_type"    => "password",

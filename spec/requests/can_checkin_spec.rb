@@ -2,8 +2,8 @@ require "spec_helper"
 
 describe "Checking in" do
   let!(:ibeacon) { "k;asjdf;kasjdfasd" }
-  let!(:cohort ) { Cohort.create! name: "Rails Engineering - Houston Q1 2016", beacon_id: ibeacon, campus_name: "Houston" }
-  let!(:student) { Student.create! name: "Jesse Wo", email: "user@example.com", password: "sekret", cohort: cohort, phone_number: "7135555555" }
+  let!(:cohort ) { Cohort.create! name: "Rails Engineering - Houston Q1 2016", beacon_id: ibeacon, campus_name: "Houston", cohort_signup_code: "5a4r" }
+  let!(:student) { Student.create! name: "Jesse Wo", email: "user@example.com", password: "sekret", cohort: cohort }
   let!(:day    ) { Day.create! cohort: cohort, start_time: 14.minutes.ago }
   let!(:checkin) { Checkin.create! student: student, day: day }
 

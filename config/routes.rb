@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     get 'me' => 'me#show', as: "me"
     get 'me/history' => 'me#history'
     post 'checkin' => 'checkins#checkin'
+    post "register" => "registration#create"
   end
 
 end
