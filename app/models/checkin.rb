@@ -7,7 +7,9 @@ class Checkin < ActiveRecord::Base
     .where("days.start_time >= ?",  Date.today.beginning_of_day)
     .where("days.start_time < ?",  Date.today.end_of_day)
   }
-    
+
+  scope :historical, lambda { joins(:day).where("days.start_time < ?", Date.today.end_of_day)}
+
   scope :for_student,  -> (student ){ find_by(student_id: student.id)}
 
   def checkin!
