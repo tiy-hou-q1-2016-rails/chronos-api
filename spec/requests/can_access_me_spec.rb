@@ -2,6 +2,9 @@ require "spec_helper"
 
 describe "API" do
 
+  let(:cohort ) { create(:cohort) }
+  let(:student) { create(:student, cohort: cohort, password: "sekret")}
+
   it "unauthenticated should 401" do
     get api_me_path
     expect(response.status).to eq(401)
@@ -9,12 +12,10 @@ describe "API" do
 
   it "With student created, can get my information" do
 
-    cohort  = Cohort.create! name: "Rails Engineering - Houston Q1 2016", beacon_id: "yolo2016", campus_name: "Houston", cohort_signup_code: "5a4r"
-    student = Student.create! name: "Jesse Wo", email: "user@example.com", password: "sekret", cohort: cohort
 
     auth_args = {
       "grant_type"    => "password",
-      "username"      => "user@example.com",
+      "username"      => student.email,
       "password"      => "sekret"
     }
 
@@ -26,7 +27,7 @@ describe "API" do
 
     expect(response.status).to eq 200
 
-    expect(JSON.parse(response.body)["student"]["email"]).to eq("user@example.com")
+    expect(JSON.parse(response.body)["student"]["email"]).to eq(student.email)
 
   end
 end

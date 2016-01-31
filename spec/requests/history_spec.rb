@@ -2,8 +2,8 @@ require "spec_helper"
 
 describe "Viewing History" do
   let!(:ibeacon) { "k;asjdf;kasjdfasd" }
-  let!(:cohort ) { Cohort.create! name: "Rails Engineering - Houston Q1 2016", beacon_id: ibeacon, campus_name: "Houston", cohort_signup_code: "5a4r" }
-  let!(:student) { Student.create! name: "Jesse Wo", email: "user@example.com", password: "sekret", cohort: cohort }
+  let!(:cohort ) { create(:cohort, beacon_id: ibeacon) }
+  let!(:student) { create(:student, cohort: cohort, password: "sekret")}
 
   let(:token) do
 

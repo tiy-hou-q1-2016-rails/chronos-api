@@ -2,7 +2,8 @@ require "spec_helper"
 
 describe "Registration" do
   let!(:ibeacon) { "k;asjdf;kasjdfasd" }
-  let!(:cohort ) { Cohort.create! cohort_signup_code: "5a4r", name: "Rails Engineering - Houston Q1 2016", beacon_id: ibeacon, campus_name: "Houston" }
+  let!(:cohort ) { create(:cohort, beacon_id: ibeacon) }
+
 
   it "will give 422 with errors if I have incorrect cohort code" do
 
