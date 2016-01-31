@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160131185642) do
+ActiveRecord::Schema.define(version: 20160131202231) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "checkins", force: :cascade do |t|
+    t.integer  "student_id"
+    t.integer  "day_id"
+    t.datetime "checkin_at"
+    t.string   "status",     default: "pending"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
+  add_index "checkins", ["day_id"], name: "index_checkins_on_day_id", using: :btree
+  add_index "checkins", ["student_id"], name: "index_checkins_on_student_id", using: :btree
 
   create_table "cohorts", force: :cascade do |t|
     t.string   "name"
@@ -24,6 +36,15 @@ ActiveRecord::Schema.define(version: 20160131185642) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
   end
+
+  create_table "days", force: :cascade do |t|
+    t.integer  "cohort_id"
+    t.datetime "start_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "days", ["cohort_id"], name: "index_days_on_cohort_id", using: :btree
 
   create_table "oauth_access_grants", force: :cascade do |t|
     t.integer  "resource_owner_id", null: false
@@ -75,4 +96,7 @@ ActiveRecord::Schema.define(version: 20160131185642) do
     t.datetime "updated_at",      null: false
   end
 
+  add_foreign_key "checkins", "days"
+  add_foreign_key "checkins", "students"
+  add_foreign_key "days", "cohorts"
 end

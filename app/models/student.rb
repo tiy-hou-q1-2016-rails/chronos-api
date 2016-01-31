@@ -4,4 +4,5 @@ class Student < ActiveRecord::Base
   validates :name, :cohort, :email, :phone_number, presence: true
 
   has_secure_password
+  has_many :checkins
 end
